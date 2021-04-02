@@ -1,0 +1,104 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+
+  <title>The HTML5 Herald</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<style>
+
+.a {
+
+	color: white;
+
+}
+
+</style>
+
+<body style="background-color:#99cc00">
+  <form id="myForm" class="search" action="">
+		<label for="">News API Generator</label>
+		<input id="inputText" class="input" type="text" /><br>
+		<input id="submitButton" type="submit" value="Submit" style="background-color:#ff5588" />
+  </form>
+
+	    <button onclick="document.getElementById('inputText').value = '移民';" class="keyword" value="移民" style="background-color:#FFDD66">移民</button>
+		<button onclick="document.getElementById('inputText').value = '新竹';" class="keyword" value="新竹" style="background-color:#FFDD66">新竹</button>
+		<button onclick="document.getElementById('inputText').value = '旅遊';" class="keyword" value="旅遊" style="background-color:#FFDD66">旅遊</button>
+	    <button onclick="document.getElementById('inputText').value = 'Immigration';" value="Immigration" style="background-color:#FFDD66">Immigration</button>
+	    <button onclick="document.getElementById('inputText').value = 'Education';" class="keyword" value="Education" style="background-color:#FFDD66">Education</button>	    
+	    <button onclick="document.getElementById('inputText').value = 'Innovation';" class="keyword" value="Innovation" style="background-color:#FFDD66">Innovation</button>
+		<button onclick="document.getElementById('inputText').value = 'Charlottetown';" class="keyword" value="Charlottetown" style="background-color:#FFDD66">Charlottetown</button>
+		<button onclick="document.getElementById('inputText').value = 'Baby';" class="keyword" value="Baby" style="background-color:#FFDD66">Baby</button>
+
+  <div class=container">
+		<ul class="news-list"></ul>
+  </div>
+
+		<a href="https://www.youtube.com/watch?v=fOSGazKFRYE">Tutortial</a> // <a href="https://newsapi.org/account">API Status</a>
+	<script>
+		const searchFrom = document.querySelector('.search');
+		const input = document.querySelector('.input');
+		const newsList = document.querySelector('.news-list');
+
+		searchFrom.addEventListener('submit', retrieve)
+
+		function retrieve(e){
+
+			if (input.value == '') {
+
+				alert('Input field is empty!');
+				return;
+			
+			}
+
+			newsList.innerHTML = '';
+
+			e.preventDefault();
+
+			const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
+
+			<script type='text/javascript' src='config.js'></script>
+
+			var mykey = config.MY_KEY;
+
+			const apiKey = mykey;
+
+			let topic = input.value;
+
+			let url = 'https://newsapi.org/v2/everything?q='+ topic + "&sortBy=publishedAt" + "&apiKey=" + apiKey;
+
+			fetch(url)
+
+			  .then((res)=>{
+				return res.json() })
+
+		      .then((data)=>{
+				console.log(data);
+				data.articles.forEach(article => {
+
+					let li = document.createElement('li');
+					let a = document.createElement('a');
+					a.setAttribute('href', article.url);
+					a.setAttribute('target', '_blank');
+					a.setAttribute('style', 'color:white');
+					a.textContent = article.title;
+					li.appendChild(a);
+					newsList.appendChild(li); 
+				
+				}) 
+			}).catch((error)=> {
+				console.log(error);
+			})
+
+			console.log(topic);
+		
+		}
+	</script>
+
+</body>
+</html>
