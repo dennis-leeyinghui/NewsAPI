@@ -62,12 +62,6 @@
 
 			const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
 
-			<script type='text/javascript' src='config.js'></script>
-
-			var mykey = config.MY_KEY;
-
-			const apiKey = mykey;
-
 			let topic = input.value;
 
 			let url = 'https://newsapi.org/v2/everything?q='+ topic + "&sortBy=publishedAt" + "&apiKey=" + apiKey;
